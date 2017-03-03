@@ -18,32 +18,40 @@ module.exports = {
     module: {
         rules: [
             {
-                enforce: 'pre',
                 test: /\.ts$/,
-                use: ['awesome-typescript-loader', 'angular2-template-loader', 'angular2-router-loader']
+                loaders: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: { configFileName: helpers.root('./', 'tsconfig.json') }
+                    }, 'angular2-template-loader', 'angular-router-loader'
+                ]
             },
             {
-                enforce: 'pre',
                 test: /\.html$/,
-                use: 'html-loader'
+                loader: 'html-loader'
             },
             {
-                enforce: 'pre',
+                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                loader: 'file-loader?name=assets/[name].[hash].[ext]'
+            },
+            {
                 test: /\.css$/,
                 exclude: helpers.root('src', 'app'),
-                use: ExtractTextPlugin.extract({ use: 'css-loader', fallback: 'style-loader' })
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?sourceMap' })
             },
             {
-                enforce: 'pre',
                 test: /\.css$/,
                 include: helpers.root('src', 'app'),
-                use: 'raw-loader'
+                loader: 'raw-loader'
             }
-
         ]
     },
 
     plugins: [
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            __dirname
+        ),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
         }),
