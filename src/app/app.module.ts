@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { APPRROUTES } from "./app.routes";
 import { PreloadSelectedModules } from "./app.preload-strategy";
 import { AppComponent } from "./app.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { AppComponent } from "./app.component";
         RouterModule.forRoot(APPRROUTES, { preloadingStrategy: PreloadSelectedModules })
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        NavbarComponent
     ],
     providers: [
         PreloadSelectedModules

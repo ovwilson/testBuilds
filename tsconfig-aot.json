@@ -17,7 +17,8 @@
       "node_modules"
     ],
     "files": [
-      "src/main-aot.ts"
+      "src/main-aot.ts",
+      "src/app/home/home.module.ts"
     ],
     "angularCompilerOptions": {
       "genDir": "aot",

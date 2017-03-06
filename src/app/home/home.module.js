@@ -5,32 +5,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { APPRROUTES } from "./app.routes";
-import { PreloadSelectedModules } from "./app.preload-strategy";
-import { AppComponent } from "./app.component";
-var AppModule = (function () {
-    function AppModule() {
+import { RouterModule } from "@angular/router";
+import { HomeComponent } from "./home.component";
+import { APPRROUTES } from "./home.routing";
+var HomeModule = (function () {
+    function HomeModule() {
     }
-    return AppModule;
+    return HomeModule;
 }());
-AppModule = __decorate([
+HomeModule = __decorate([
     NgModule({
         imports: [
-            BrowserModule,
+            CommonModule,
             FormsModule,
-            RouterModule.forRoot(APPRROUTES, { preloadingStrategy: PreloadSelectedModules })
+            RouterModule.forChild(APPRROUTES)
         ],
         declarations: [
-            AppComponent
+            HomeComponent
         ],
-        providers: [
-            PreloadSelectedModules
-        ],
-        bootstrap: [AppComponent]
+        exports: [
+            RouterModule
+        ]
     })
-], AppModule);
-export { AppModule };
-//# sourceMappingURL=app.module.js.map
+], HomeModule);
+export { HomeModule };
+//# sourceMappingURL=home.module.js.map
